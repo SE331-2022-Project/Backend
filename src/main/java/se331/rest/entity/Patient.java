@@ -3,6 +3,7 @@ package se331.rest.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,8 +23,9 @@ public class Patient {
     String vaccine_stat;
     String vaccine_brand;
     String vaccine_date;
-//    @OneToMany
-//    List<DoctorComment> doctorComments;
+    @OneToMany(mappedBy = "patient")
+    @Builder.Default
+    List<DoctorComment> doctorComments = new ArrayList<>();
 //    @ElementCollection
 //    List<String> imageUrls;
 }

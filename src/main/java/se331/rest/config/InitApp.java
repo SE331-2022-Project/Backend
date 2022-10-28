@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import se331.rest.entity.DoctorComment;
 import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorCommentRepository;
 import se331.rest.repository.PatientRepository;
@@ -159,5 +160,13 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_brand("Johnson&Johnson")
                         .vaccine_date("20/06/2021")
                 .build());
+        DoctorComment dc = doctorCommentRepository.save(DoctorComment.builder()
+                .doctor_name("doctor")
+                .title("safe")
+                .comment("the patient is good")
+                .patient(tempPatient)
+                .build());
+        tempPatient.getDoctorComments().add(dc);
+
     }
 }
