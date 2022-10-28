@@ -2,7 +2,6 @@ package se331.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Patient;
 import se331.rest.service.PatientService;
-import se331.rest.util.LapMapper;
+import se331.rest.util.LabMapper;
 
 @Controller
 public class PatientController {
@@ -32,13 +31,13 @@ public class PatientController {
         HttpHeaders responseHeader = new HttpHeaders();
 
         responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(LapMapper.INSTANCE.getPatientDTO(pageOutput.getContent()), responseHeader, HttpStatus.OK);
+        return new ResponseEntity<>(LabMapper.INSTANCE.getPatientDTO(pageOutput.getContent()), responseHeader, HttpStatus.OK);
     }
     @GetMapping("patients/{id}")
     public ResponseEntity<?> getPatient(@PathVariable("id") Long id) {
         Patient output = patientService.getPatient(id);
         if (output != null ) {
-            return ResponseEntity.ok(LapMapper.INSTANCE.getPatientDTO(output));
+            return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(output));
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
@@ -46,6 +45,6 @@ public class PatientController {
     @PostMapping("/patient")
     public ResponseEntity<?> addPatient(@RequestBody Patient patient) {
         Patient output = patientService.save(patient);
-        return ResponseEntity.ok(LapMapper.INSTANCE.getPatientDTO(output));
+        return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(output));
     }
 }

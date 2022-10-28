@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se331.rest.service.DoctorCommentService;
-import se331.rest.util.LapMapper;
+import se331.rest.util.LabMapper;
 
 @RestController
 public class DoctorCommentController {
@@ -13,6 +13,6 @@ public class DoctorCommentController {
     DoctorCommentService doctorCommentService;
     @GetMapping("/doctorcomments")
     ResponseEntity<?> getDoctorComments() {
-        return ResponseEntity.ok(LapMapper.INSTANCE.getDoctorCommentDTO(doctorCommentService.getAllDoctorComment()));
+        return ResponseEntity.ok(LabMapper.INSTANCE.getDoctorCommentDTO(doctorCommentService.getAllDoctorComment()));
     }
 }
