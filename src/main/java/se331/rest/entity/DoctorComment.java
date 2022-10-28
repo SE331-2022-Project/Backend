@@ -17,6 +17,6 @@ public class DoctorComment {
     String doctor_name;
     String title;
     String comment;
-//    @ManyToOne
-//    Patient patient;
+@ManyToOne
+    Patient patient;
 }
