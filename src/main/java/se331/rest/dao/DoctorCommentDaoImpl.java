@@ -24,4 +24,9 @@ public class DoctorCommentDaoImpl implements DoctorCommentDao{
     public Optional<DoctorComment> findById(Long id) {
         return doctorCommentRepository.findById(id);
     }
+
+    @Override
+    public DoctorComment save(DoctorComment doctorComment) {
+        return doctorCommentRepository.save(doctorComment);
+    }
 }

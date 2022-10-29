@@ -42,7 +42,7 @@ public class PatientController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
     }
-    @PostMapping("/patient")
+    @PostMapping("/patients")
     public ResponseEntity<?> addPatient(@RequestBody Patient patient) {
         Patient output = patientService.save(patient);
         return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(output));

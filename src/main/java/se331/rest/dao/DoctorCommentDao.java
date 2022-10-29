@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface DoctorCommentDao {
     Page<DoctorComment> getDoctorcomment(Pageable pageRequest);
     Optional<DoctorComment> findById(Long id);
+    DoctorComment save(DoctorComment doctorComment);
 }

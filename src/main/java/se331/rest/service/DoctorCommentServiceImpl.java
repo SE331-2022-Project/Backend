@@ -20,7 +20,7 @@ public class DoctorCommentServiceImpl implements DoctorCommentService{
     }
 
     @Override
-    public Page<DoctorComment> getDoctorComment(Integer page, Integer pageSize) {
-        return doctorCommentDao.getDoctorcomment(PageRequest.of(page,pageSize));
+    public DoctorComment save(DoctorComment doctorComment) {
+        return doctorCommentDao.save(doctorComment);
     }
 }
