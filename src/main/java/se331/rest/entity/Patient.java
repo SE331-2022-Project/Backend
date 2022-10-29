@@ -21,8 +21,12 @@ public class Patient {
     int age;
     String hometown;
     String vaccine_stat;
-    String vaccine_brand;
-    String vaccine_date;
+    String vaccine_brand1;
+    String vaccine_date1;
+    String vaccine_brand2;
+    String vaccine_date2;
+    @ManyToOne
+    Doctor doctor;
     @OneToMany(mappedBy = "patient")
     @Builder.Default
     List<DoctorComment> doctorComments = new ArrayList<>();

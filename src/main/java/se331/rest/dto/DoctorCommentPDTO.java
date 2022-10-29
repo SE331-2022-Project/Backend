@@ -16,6 +16,8 @@ public class DoctorCommentPDTO {
     int age;
     String hometown;
     String vaccine_stat;
-    String vaccine_brand;
-    String vaccine_date;
+    String vaccine_brand1;
+    String vaccine_date1;
+    String vaccine_brand2;
+    String vaccine_date2;
 }

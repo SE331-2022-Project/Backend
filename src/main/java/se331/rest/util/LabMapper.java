@@ -3,7 +3,9 @@ package se331.rest.util;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import se331.rest.dto.DoctorCommentDTO;
+import se331.rest.dto.DoctorDTO;
 import se331.rest.dto.PatientDTO;
+import se331.rest.entity.Doctor;
 import se331.rest.entity.DoctorComment;
 import se331.rest.entity.Patient;
 
@@ -17,4 +19,6 @@ public interface LabMapper {
     List<PatientDTO> getPatientDTO(List<Patient> patients);
     DoctorCommentDTO getDoctorCommentDTO(DoctorComment doctorComment);
     List<DoctorCommentDTO> getDoctorCommentDTO(List<DoctorComment> doctorComments);
+    DoctorDTO getDoctorDTO(Doctor doctor);
+    List<DoctorDTO> getDoctorDTO(List<Doctor> doctors);
 }

@@ -4,15 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import se331.rest.entity.DoctorComment;
-
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientDTO {
+public class DoctorPDTO {
     Long id;
     String first_name;
     String last_name;
@@ -23,5 +20,4 @@ public class PatientDTO {
     String vaccine_date1;
     String vaccine_brand2;
     String vaccine_date2;
-    List<PatientDcDTO> doctorComments;
 }

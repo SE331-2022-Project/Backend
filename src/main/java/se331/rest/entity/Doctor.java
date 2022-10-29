@@ -3,19 +3,24 @@ package se331.rest.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorComment {
+public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String title;
-    String comment;
-@ManyToOne
-    Patient patient;
+    String doctor_name;
+    @OneToMany(mappedBy = "doctor")
+    @Builder.Default
+    List<Patient> patients = new ArrayList<>();
+//    @OneToOne
+//    User user;
 }
+
