@@ -3,11 +3,20 @@ package se331.rest.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import se331.rest.entity.Doctor;
 import se331.rest.entity.DoctorComment;
 import se331.rest.entity.Patient;
 import se331.rest.repository.DoctorCommentRepository;
+import se331.rest.repository.DoctorRepository;
 import se331.rest.repository.PatientRepository;
+import se331.rest.security.entity.Authority;
+import se331.rest.security.entity.AuthorityName;
+import se331.rest.security.entity.User;
+import se331.rest.security.repository.AuthorityRepository;
+import se331.rest.security.repository.UserRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -20,10 +29,17 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     PatientRepository patientRepository;
     @Autowired
     DoctorCommentRepository doctorCommentRepository;
-
+    @Autowired
+    DoctorRepository doctorRepository;
+    @Autowired
+    AuthorityRepository authorityRepository;
+    @Autowired
+    UserRepository userRepository;
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent){
+        Doctor d1;
+        d1 = doctorRepository.save(Doctor.builder().doctor_name("doctor").build());
         Patient tempPatient = null;
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Anan")
@@ -33,7 +49,15 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("02/05/2021")
+                        .doctor(d1)
                 .build());
+        DoctorComment dc = doctorCommentRepository.save(DoctorComment.builder()
+                .title("safe")
+                .comment("the patient is good")
+                .patient(tempPatient)
+                .build());
+        tempPatient.getDoctorComments().add(dc);
+        d1.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Kitti")
                         .last_name("Mamaung")
@@ -160,12 +184,55 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_brand1("Johnson&Johnson")
                         .vaccine_date1("20/06/2021")
                 .build());
-        DoctorComment dc = doctorCommentRepository.save(DoctorComment.builder()
-                .title("safe")
-                .comment("the patient is good")
-                .patient(tempPatient)
-                .build());
-        tempPatient.getDoctorComments().add(dc);
+        addUser();
+        d1.setUser(user1);
+        user1.setDoctor(d1);
+    }
+    User user1,user2,user3;
+    private  void addUser(){
+
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        user1 = User.builder()
+                .username("admin")
+                .password(encoder.encode("admin"))
+                .firstname("admin")
+                .lastname("admin")
+                .email("admin@admin.com")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+
+        user2 = User.builder()
+                .username("user")
+                .password(encoder.encode("user"))
+                .firstname("user")
+                .lastname("user")
+                .email("enabled@user.com")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
+                        .atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+        user3 = User.builder()
+                .username("disableUser")
+                .password(encoder.encode("disableUser"))
+                .firstname("disableUser")
+                .lastname("disableUser")
+                .email("disableUser@user.com")
+                .enabled(false)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
+                        .atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+        authorityRepository.save(authUser);
+        authorityRepository.save(authAdmin);
+        user1.getAuthorities().add(authUser);
+        user1.getAuthorities().add(authAdmin);
+        user2.getAuthorities().add(authUser);
+        user3.getAuthorities().add(authUser);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
 
     }
 }

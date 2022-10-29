@@ -10,3 +10,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+jwt:
+  header: Authorization
+  secret: "q3t6w9z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaPdSgVkYp2s5v8y/B?E(H+MbQeTh"
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
