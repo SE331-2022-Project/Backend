@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import se331.rest.entity.Patient;
 import se331.rest.repository.PatientRepository;
 
+import java.util.Optional;
+
 @Profile("db")
 @Repository
 public class PatientDaoImpl implements PatientDao {
@@ -31,6 +33,11 @@ public class PatientDaoImpl implements PatientDao {
     @Override
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
+    }
+
+    @Override
+    public Optional<Patient> findById(Long id) {
+        return patientRepository.findById(id);
     }
 }
 
