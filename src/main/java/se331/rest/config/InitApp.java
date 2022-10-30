@@ -51,6 +51,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_date1("02/05/2021")
                         .doctor(d1)
                 .build());
+//        tempPatient.getImageUrls().add("gs://imageupload-7351c.appspot.com/2022-10-31 005630225-reviewer3.jpg");
         DoctorComment dc = doctorCommentRepository.save(DoctorComment.builder()
                 .title("safe")
                 .comment("the patient is good")

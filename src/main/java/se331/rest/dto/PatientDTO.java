@@ -24,4 +24,5 @@ public class PatientDTO {
     String vaccine_brand2;
     String vaccine_date2;
     List<PatientDcDTO> doctorComments;
+    List<String> imageUrls;
 }

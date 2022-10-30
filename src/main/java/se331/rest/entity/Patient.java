@@ -30,6 +30,7 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     @Builder.Default
     List<DoctorComment> doctorComments = new ArrayList<>();
-//    @ElementCollection
-//    List<String> imageUrls;
+    @ElementCollection
+    @Builder.Default
+    List<String> imageUrls = new ArrayList<>();
 }
