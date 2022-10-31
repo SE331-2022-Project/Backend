@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import se331.rest.entity.Doctor;
+import se331.rest.entity.Patient;
 import se331.rest.service.DoctorService;
 import se331.rest.util.LabMapper;
+
+import java.util.List;
 
 @RestController
 public class DoctorController {
@@ -28,5 +31,11 @@ public class DoctorController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
+    }
+    @GetMapping("/doctors/{id}/patients")
+    ResponseEntity getDoctorPatient(@PathVariable("id") Long id) {
+        Doctor doctor = doctorService.getDoctor(id);
+        List<Patient> patientList = doctor.getPatients();
+        return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(patientList));
     }
 }
