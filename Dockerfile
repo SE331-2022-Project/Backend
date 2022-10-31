@@ -8,4 +8,5 @@ COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY ${DEPENDENCY}/META-INF /app/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java" ,    "-Dspring.profiles.active=${JAVA_PROFILE",\"-cp","app:app/lib/*","SE3312022ProjectBackendApplication"]
+ENTRYPOINT ["java" ,    "-Dspring.profiles.active=${JAVA_PROFILE",\
+"-cp","app:app/lib/*","SE3312022ProjectBackendApplication"]
