@@ -272,7 +272,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
         user2 = User.builder()
                 .username("Dr.Kittisak")
-                .password(encoder.encode("Kittisak"))
+                .password(encoder.encode("kittisak"))
                 .firstname("Kittisak")
                 .lastname("Kaewbunmaung")
                 .email("Kittisak.K@doctor.com")
@@ -282,7 +282,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user3 = User.builder()
                 .username("Dr.Burussakorn")
-                .password(encoder.encode("Burussakorn"))
+                .password(encoder.encode("burussakorn"))
                 .firstname("Burussakorn")
                 .lastname("Ruangon")
                 .email("Burussakorn.R@doctor.com")
@@ -292,7 +292,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user4 = User.builder()
                 .username("Dr.Panadon")
-                .password(encoder.encode("Panadon"))
+                .password(encoder.encode("panadon"))
                 .firstname("Panadon")
                 .lastname("Saikaew")
                 .email("Panadon.S@doctor.com")
@@ -302,7 +302,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user5 = User.builder()
                 .username("Anan")
-                .password(encoder.encode("Anan"))
+                .password(encoder.encode("anan"))
                 .firstname("Anan")
                 .lastname("Kongdecha")
                 .email("Anan.K@patient.com")
