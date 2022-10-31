@@ -51,8 +51,15 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.GET,"/patients").permitAll()
                 .antMatchers(HttpMethod.GET,"/patients/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/register").permitAll()
+                .antMatchers(HttpMethod.GET,"/vaccines").permitAll()
+                .antMatchers(HttpMethod.GET,"/patients/{id}").permitAll()
+                .antMatchers(HttpMethod.GET,"/doctors").permitAll()
+                .antMatchers(HttpMethod.GET,"/user").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/event").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/patients").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/doctors").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/vaccines").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/doctorComments").hasRole("DOCTOR")
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
