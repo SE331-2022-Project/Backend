@@ -15,6 +15,8 @@ import se331.rest.entity.Patient;
 import se331.rest.service.DoctorService;
 import se331.rest.util.LabMapper;
 
+import java.util.List;
+
 @RestController
 public class DoctorController {
     @Autowired
