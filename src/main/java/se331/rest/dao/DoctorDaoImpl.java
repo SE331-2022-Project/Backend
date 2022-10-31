@@ -22,4 +22,9 @@ public class DoctorDaoImpl implements DoctorDao{
     public Optional<Doctor> findById(Long id) {
         return doctorRepository.findById(id);
     }
+
+    @Override
+    public Doctor getDoctor(Long id) {
+        return doctorRepository.findById(id).orElse(null);
+    }
 }

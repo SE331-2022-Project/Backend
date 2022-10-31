@@ -23,4 +23,9 @@ public class DoctorServiceImpl implements DoctorService{
     public Page<Doctor> getDoctor(Integer page, Integer pageSize) {
         return doctorDao.getDoctor(PageRequest.of(page,pageSize));
     }
+
+    @Override
+    public Doctor getDoctor(Long id) {
+        return doctorDao.getDoctor(id);
+    }
 }

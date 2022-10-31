@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface DoctorDao {
     Page<Doctor> getDoctor(Pageable pageRequest);
     Optional<Doctor> findById(Long id);
+
+    Doctor getDoctor(Long id);
 }
