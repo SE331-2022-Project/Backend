@@ -247,7 +247,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         d1.setUser(user2);
         user2.setDoctor(d1);
         d2.setUser(user3);
-        user3.setDoctor(d2)
+        user3.setDoctor(d2);
         d3.setUser(user4);
         user4.setDoctor(d3);
         user5.setDoctor(user);
