@@ -38,8 +38,12 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent){
-        Doctor d1;
-        d1 = doctorRepository.save(Doctor.builder().doctor_name("doctor").build());
+        Doctor d1,d2,d3,admin,user;
+        d1 = doctorRepository.save(Doctor.builder().doctor_name("Dr.Kittisak").build());
+        d2 = doctorRepository.save(Doctor.builder().doctor_name("Dr.Burussakorn").build());
+        d3 = doctorRepository.save(Doctor.builder().doctor_name("Dr.Panadon").build());
+        admin = doctorRepository.save(Doctor.builder().doctor_name("Admin").build());
+        user = doctorRepository.save(Doctor.builder().doctor_name("Anan").build());
         Patient tempPatient = null;
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Anan")
@@ -49,6 +53,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("02/05/2021")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("05/11/2021")
                         .doctor(d1)
                 .build());
 //        tempPatient.getImageUrls().add("gs://imageupload-7351c.appspot.com/2022-10-31 005630225-reviewer3.jpg");
@@ -67,7 +73,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("AstraZeneca")
                         .vaccine_date1("11/06/2021")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("15/12/2021")
+                        .doctor(d1)
                 .build());
+        d1.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Patikool")
                         .last_name("Konpetch")
@@ -76,7 +86,9 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("First Dose")
                         .vaccine_brand1("AstraZeneca")
                         .vaccine_date1("03/03/2022")
+                        .doctor(d3)
                 .build());
+        d3.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Kingkaew")
                         .last_name("Klaewklad")
@@ -85,7 +97,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Sinovac")
                         .vaccine_date1("22/06/2021")
+                        .vaccine_brand2("Sinovac")
+                        .vaccine_date2("28/12/2021")
+                        .doctor(d2)
                 .build());
+        d2.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Tongrak")
                         .last_name("Jakkajee")
@@ -94,7 +110,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Sinovac")
                         .vaccine_date1("03/04/2021")
+                        .vaccine_brand2("AstraZeneca")
+                        .vaccine_date2("07/10/2021")
+                        .doctor(d1)
                 .build());
+        d1.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Pimchanok")
                         .last_name("Kongkhakhet")
@@ -103,7 +123,9 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("First Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("12/06/2021")
+                        .doctor(d2)
                 .build());
+        d2.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Jason")
                         .last_name("Brown")
@@ -112,7 +134,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("30/06/2021")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("02/01/2022")
+                        .doctor(d2)
                 .build());
+        d2.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Mutisorn")
                         .last_name("Kornkamol")
@@ -121,7 +147,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("AstraZeneca")
                         .vaccine_date1("05/05/2021")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("07/11/2021")
+                        .doctor(d3)
                 .build());
+        d3.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Joe")
                         .last_name("Mama")
@@ -130,7 +160,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Sinovac")
                         .vaccine_date1("11/03/2021")
+                        .vaccine_brand2("Sinovac")
+                        .vaccine_date2("15/09/2021")
+                        .doctor(d3)
                 .build());
+        d3.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Adisorn")
                         .last_name("Gonzalez")
@@ -139,7 +173,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("02/02/2022")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("03/08/2022")
+                        .doctor(d3)
                 .build());
+        d3.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Burapa")
                         .last_name("AongAad")
@@ -148,7 +186,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Sinovac")
                         .vaccine_date1("16/05/2021")
+                        .vaccine_brand2("Sinovac")
+                        .vaccine_date2("18/11/2021")
+                        .doctor(d2)
                 .build());
+        d2.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Dumrong")
                         .last_name("Kongkoi")
@@ -157,7 +199,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("AstraZeneca")
                         .vaccine_date1("11/01/2022")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("22/07/2022")
+                        .doctor(d1)
                 .build());
+        d1.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Pattinson")
                         .last_name("Roy")
@@ -166,7 +212,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Pfizer")
                         .vaccine_date1("11/06/2021")
+                        .vaccine_brand2("Pfizer")
+                        .vaccine_date2("15/12/2021")
+                        .doctor(d1)
                 .build());
+        d1.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Lung")
                         .last_name("Dum")
@@ -175,26 +225,41 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                         .vaccine_stat("Second Dose")
                         .vaccine_brand1("Sinovac")
                         .vaccine_date1("26/04/2021")
+                        .vaccine_brand2("AstraZeneca")
+                        .vaccine_date2("30/10/2021")
+                        .doctor(d2)
                 .build());
+        d2.getPatients().add(tempPatient);
         tempPatient = patientRepository.save(Patient.builder()
                         .first_name("Timothy")
                         .last_name("Lawrence")
                         .age(35)
                         .hometown("Bangkok")
-                        .vaccine_stat("Second Dose")
+                        .vaccine_stat("First Dose")
                         .vaccine_brand1("Johnson&Johnson")
                         .vaccine_date1("20/06/2021")
+                        .doctor(d3)
                 .build());
+        d3.getPatients().add(tempPatient);
         addUser();
-        d1.setUser(user1);
-        user1.setDoctor(d1);
+        admin.setUser(user1);
+        user1.setDoctor(admin);
+        d1.setUser(user2);
+        user2.setDoctor(d1);
+        d2.setUser(user3);
+        user3.setDoctor(d2)
+        d3.setUser(user4);
+        user4.setDoctor(d3);
+        user5.setDoctor(user);
+        user.setUser(user5);
     }
-    User user1,user2,user3;
+    User user1,user2,user3,user4,user5;
     private  void addUser(){
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
         Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        Authority authDoctor = Authority.builder().name(AuthorityName.ROLE_DOCTOR).build();
         user1 = User.builder()
                 .username("admin")
                 .password(encoder.encode("admin"))
@@ -206,34 +271,59 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
 
         user2 = User.builder()
-                .username("user")
-                .password(encoder.encode("user"))
-                .firstname("user")
-                .lastname("user")
-                .email("enabled@user.com")
+                .username("Dr.Kittisak")
+                .password(encoder.encode("Kittisak"))
+                .firstname("Kittisak")
+                .lastname("Kaewbunmaung")
+                .email("Kittisak.K@doctor.com")
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
                         .atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
         user3 = User.builder()
-                .username("disableUser")
-                .password(encoder.encode("disableUser"))
-                .firstname("disableUser")
-                .lastname("disableUser")
-                .email("disableUser@user.com")
-                .enabled(false)
+                .username("Dr.Burussakorn")
+                .password(encoder.encode("Burussakorn"))
+                .firstname("Burussakorn")
+                .lastname("Ruangon")
+                .email("Burussakorn.R@doctor.com")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
+                        .atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+        user4 = User.builder()
+                .username("Dr.Panadon")
+                .password(encoder.encode("Panadon"))
+                .firstname("Panadon")
+                .lastname("Saikaew")
+                .email("Panadon.S@doctor.com")
+                .enabled(true)
+                .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
+                        .atStartOfDay(ZoneId.systemDefault()).toInstant()))
+                .build();
+        user5 = User.builder()
+                .username("Anan")
+                .password(encoder.encode("Anan"))
+                .firstname("Anan")
+                .lastname("Kongdecha")
+                .email("Anan.K@patient.com")
+                .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2021,01,01)
                         .atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
         authorityRepository.save(authUser);
         authorityRepository.save(authAdmin);
+        authorityRepository.save(authDoctor);
         user1.getAuthorities().add(authUser);
         user1.getAuthorities().add(authAdmin);
-        user2.getAuthorities().add(authUser);
-        user3.getAuthorities().add(authUser);
+        user2.getAuthorities().add(authDoctor);
+        user3.getAuthorities().add(authDoctor);
+        user4.getAuthorities().add(authDoctor);
+        user5.getAuthorities().add(authUser);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+        userRepository.save(user4);
+        userRepository.save(user5);
 
     }
 }
