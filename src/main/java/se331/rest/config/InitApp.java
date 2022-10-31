@@ -247,6 +247,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         d1.setUser(user2);
         user2.setDoctor(d1);
         d2.setUser(user3);
+        user3.setDoctor(d2)
         user3.setDoctor(d2);
         d3.setUser(user4);
         user4.setDoctor(d3);
@@ -272,6 +273,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
         user2 = User.builder()
                 .username("Dr.Kittisak")
+                .password(encoder.encode("Kittisak"))
                 .password(encoder.encode("kittisak"))
                 .firstname("Kittisak")
                 .lastname("Kaewbunmaung")
@@ -282,6 +284,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user3 = User.builder()
                 .username("Dr.Burussakorn")
+                .password(encoder.encode("Burussakorn"))
                 .password(encoder.encode("burussakorn"))
                 .firstname("Burussakorn")
                 .lastname("Ruangon")
@@ -292,6 +295,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user4 = User.builder()
                 .username("Dr.Panadon")
+                .password(encoder.encode("Panadon"))
                 .password(encoder.encode("panadon"))
                 .firstname("Panadon")
                 .lastname("Saikaew")
@@ -302,6 +306,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .build();
         user5 = User.builder()
                 .username("Anan")
+                .password(encoder.encode("Anan"))
                 .password(encoder.encode("anan"))
                 .firstname("Anan")
                 .lastname("Kongdecha")

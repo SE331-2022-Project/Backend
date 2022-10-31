@@ -36,9 +36,15 @@ public class DoctorController {
         }
     }
     @GetMapping("/doctors/{id}/patients")
-    ResponseEntity getDoctorPatient(@PathVariable("id") Long id) {
-        Doctor doctor = doctorService.getDoctor(id);
-        List<Patient> patientList = doctor.getPatients();
-        return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(patientList));
+    public ResponseEntity<?> getPatientList(@RequestParam(value = "_limit", required = false) Integer perPage
+            , @RequestParam(value = "_page", required = false) Integer page
+            , @PathVariable("id") Long id) {
+        perPage = perPage == null ? 3 : perPage;
+        page = page == null ? 1 : page;
+        Page<Doctor> pageOutput = null;
+        pageOutput = doctorService.getDoctor(perPage,page);
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.set("x-total-count", String.valueOf(pageOutput.getTotalElements()));
+        return new ResponseEntity<>(LabMapper.INSTANCE.getDoctorDTO(pageOutput.getContent()), responseHeader, HttpStatus.OK);
     }
 }
